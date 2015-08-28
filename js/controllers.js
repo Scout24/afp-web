@@ -22,7 +22,7 @@ function getErrorMessage(status, response) {
 var afpClientControllers = angular.module('afpClientControllers', []);
 
 var getAccountList = function($http, $scope) {
-  $http.get("/api/latest/human/account")
+  $http.get(AFP_API_ENDPOINT + "account")
     .success(function (response, status, headers) {
       accountArrayFunction = function() {
         var result = [];
@@ -58,7 +58,7 @@ afpClientControllers.controller('credentials-controller', ['$scope', '$http', '$
   function($scope, $http, $routeParams) {
     $scope.showWaiting = true;
     getAccountList($http, $scope);
-    url = "/api/latest/human/account/" + $routeParams.account + "/" + $routeParams.role + "/credentials";
+    url = AFP_API_ENDPOINT + "account/" + $routeParams.account + "/" + $routeParams.role + "/credentials";
     $http.get(url)
       .success(function (response, status, headers) {
         $scope.credentials = response;
@@ -80,7 +80,7 @@ afpClientControllers.controller('console-controller', ['$scope', '$http', '$rout
   function($scope, $http, $routeParams, $window, $location) {
     $scope.showWaiting = true;
     callbackurl = encodeURIComponent($location.absUrl());
-    url = "/api/latest/human/account/" + $routeParams.account + "/" + $routeParams.role + "/consoleurl?callbackurl=" + callbackurl ;
+    url = AFP_API_ENDPOINT + "account/" + $routeParams.account + "/" + $routeParams.role + "/consoleurl?callbackurl=" + callbackurl ;
     $http.get(url)
       .success(function (response, status, headers) {$window.location.href = response;})
       .error(function (response, status, headers) {

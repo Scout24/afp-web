@@ -24,9 +24,8 @@ For example in a vhost with:
 
 API access
 ^^^^^^^^^^
-The web UI should be used on the same machine where the api is located.
-Therefore, no configuration is needed. Just make sure that the api is
-listening on *https://myhost/api*
+Use the *vars.js* file to set your AFP_API_ENDPOINT.
+By default uses the same host as this webui with an endpoint of */afp-api/latest/*
 
 Logo configuration
 ^^^^^^^^^^^^^^^^^^
