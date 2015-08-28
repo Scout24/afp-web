@@ -4,7 +4,7 @@ TOPLEVEL := css js templates default-logo.png favicon.png index.html afp-web.spe
 
 GITREV := HEAD
 
-REVISION := "$(shell git rev-list $(GITREV) -- $(TOPLEVEL) 2>/dev/null| wc -l)"
+REVISION := "$(shell git rev-list $(GITREV) -- $(TOPLEVEL) 2>/dev/null| wc -l)$(EXTRAREV)"
 VERSION := $(shell cat VERSION 2>/dev/null).$(REVISION)
 PV = afp-web-$(VERSION)
 
