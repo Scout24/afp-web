@@ -38,9 +38,8 @@ a:hover {
   color: #555555;
 }
 
-.error {
+.align-center {
   text-align: center;
-  min-height: 275px;
 }
 
 .loader {

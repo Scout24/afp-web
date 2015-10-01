@@ -2,6 +2,7 @@ angular.module('afpClientApp').controller('credentials-controller', [
   '$scope', '$http', '$routeParams', 'userMessageService', 'appVars',
   function ($scope, $http, $routeParams, userMessageService, appVars) {
     $scope.showWaiting = true;
+
     userMessageService.getAccountList(function (err, loginstatus, accounts) {
       $scope.loginstatus = loginstatus;
 

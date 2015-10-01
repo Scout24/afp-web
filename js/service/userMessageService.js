@@ -20,9 +20,15 @@ angular.module('afpClientApp').factory('userMessageService', [
 
     function getLoginstatus(headers) {
       if (headers('X-Username')) {
-        return "Logged in as " + headers('X-Username');
+        return {
+          message: "Logged in as " + headers('X-Username'),
+          loggedin: true
+        };
       } else {
-        return "Not logged in";
+        return {
+          message: "Not logged in",
+          loggedin: false
+        };
       }
     }
 

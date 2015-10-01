@@ -6,7 +6,7 @@
     <span>AWS Federation Proxy</span>
   </div>
   <div class="right" id="loginstatus">
-    {{loginstatus}}
+    {{loginstatus.message}}
   </div>
 </div>
 <div class="loader" ng-show='showWaiting'>
@@ -24,11 +24,11 @@ export AWS_SECURITY_TOKEN=${AWS_SESSION_TOKEN}
   <p>Expires at {{credentials.Expiration}}</p>
   <a href="#" class="btn btn-info" role="button">Close</a>
 </div>
-<div class="error" ng-show="showError">
+<div class="align-center" ng-show="showError">
   <div class="alert alert-danger" role="alert">
     <h4>ERROR: {{error}}</h4>
   </div>
-  <a href="#" class="btn btn-default" role="button">Close</a>
+  <a href="#" class="btn btn-default" role="button" ng-show="loginstatus.loggedin">Close</a>
 </div>
 <div class="row">
   <div class="tile col-sm-6 col-lg-3" ng-repeat="account in accounts | orderBy: 'AccountName'">
@@ -40,5 +40,11 @@ export AWS_SECURITY_TOKEN=${AWS_SESSION_TOKEN}
         <a class="arrow" href="#/console/{{role.URLSuffix}}">ManagementConsole</a>
       </li>
     </ul>
+  </div>
+</div>
+<div class="align-center" ng-show="accounts.length == 0">
+  <div class="alert alert-info" role="alert" >
+    <b>No accounts found.</b>
+    You have no attached accounts.
   </div>
 </div>
