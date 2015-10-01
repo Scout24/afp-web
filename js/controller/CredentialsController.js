@@ -23,7 +23,7 @@ angular.module('afpClientApp').controller('credentials-controller', [
         $scope.showCredentials = true;
         $scope.showError = false;
         $scope.showWaiting = false;
-        $scope.loginstatus = loginstatus(headers);
+        $scope.loginstatus = userMessageService.getLoginstatus(headers);
       })
       .error(function (response, status, headers) {
         $scope.error = userMessageService.getErrorMessage(status, response);
