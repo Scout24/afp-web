@@ -24,7 +24,7 @@ For example in a vhost with:
 
 API access
 ^^^^^^^^^^
-Use the *app.js* file to set your AFP_API_ENDPOINT.
+Use the *app.js* file to configure the location of the afpApiEndpoint.
 By default uses the same host as this webui with an endpoint of */afp-api/latest/*
 
 Logo configuration
