@@ -12,18 +12,17 @@
     <script src="js/lib/angular-route.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controller/AccountlistController.js"></script>
-    <script src="js/controller/ConsoleController.js"></script>
-    <script src="js/controller/CredentialsController.js"></script>
     <script src="js/service/userMessageService.js"></script>
+    <script src="js/service/favouritesService.js"></script>
   </head>
   <body>
-    <div class="container-fluid" ng-view></div>
+    <div class="container-fluid" ng-include="'templates/resultlist.html'"></div>
     <div class="footer navbar navbar-fixed-bottom">
       <a target="_blank" href="https://github.com/ImmobilienScout24/afp-web">AWS Federation Proxy WebUI</a>
       is licensed under the
       <a target="_blank" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License Version 2.0</a>
       .
-      <span class="ng-binding">Version 1.0.0.is24</span>
+      <span class="ng-binding">Version 2.0.0.is24</span>
     </div>
   </body>
 </html>

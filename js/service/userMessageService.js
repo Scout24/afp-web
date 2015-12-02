@@ -11,8 +11,10 @@ angular.module('afpClientApp').factory('userMessageService', [
       } else if ([500].indexOf(status) >= 0) {
         error_message = "Problem with the API server";
         // Everything is fine and we got a json response from api server
-      } else {
+      } else if (response) {
         error_message = response.message;
+      } else {
+        error_message = "Could not connect to server."
       }
 
       return error_message;

@@ -1,50 +1,96 @@
-<div class="header navbar navbar-fixed-top">
-  <div class="left">
-    <a href="#" title="Zur Startseite">
-      <img alt="Your logo" src="logo.png" style="padding-right: 5px" onError="this.onerror=null;this.src='default-logo.png';">
-    </a>
-    <span>AWS Federation Proxy</span>
+<div ng-controller="AccountlistController">
+
+  <div class="header navbar navbar-fixed-top">
+    <div class="left">
+      <a href="#" title="Zur Startseite">
+        <img alt="Your logo" src="logo.png" style="padding-right: 5px" onError="this.onerror=null;this.src='default-logo.png';">
+      </a>
+      <span>AWS Federation Proxy</span>
+    </div>
+    <div class="right" id="loginstatus">
+      {{loginstatus.message}}
+    </div>
   </div>
-  <div class="right" id="loginstatus">
-    {{loginstatus.message}}
+
+  <div class="loader" ng-show='showWaiting'>
+    <div class="throbber-loader">
+      Loading…
+    </div>
   </div>
-</div>
-<div class="loader" ng-show='showWaiting'>
-  <div class="throbber-loader">
-    Loading…
-  </div>
-</div>
-<div class="credentials" ng-show='showCredentials'>
-  <textarea id="afp-credentials" readonly rows=7 onClick='document.getElementById("afp-credentials").select();' class="form-control">
+
+  <div class="credentials" ng-show='showCredentials'>
+
+    <ul class="nav nav-tabs">
+      <li role="presentation" ng-class="{'active': showCredentialsType === 'bash'}"><a href="#" ng-click="showCredentialsType = 'bash'">bash</a></li>
+      <li role="presentation" ng-class="{'active': showCredentialsType === 'raw'}"><a href="#" ng-click="showCredentialsType= 'raw'">raw</a></li>
+    </ul>
+
+
+<textarea id="afp-credentials" readonly rows="7" onClick='document.getElementById("afp-credentials").select();' class="credentials-box" ng-show="showCredentialsType === 'bash'">
 export AWS_ACCESS_KEY_ID={{credentials.AccessKeyId}}
 export AWS_SECRET_ACCESS_KEY={{credentials.SecretAccessKey}}
 export AWS_SESSION_TOKEN={{credentials.Token}}
-export AWS_SECURITY_TOKEN=${AWS_SESSION_TOKEN}
-  </textarea>
-  <p>Expires at {{credentials.Expiration}}</p>
-  <a href="#" class="btn btn-info" role="button">Close</a>
-</div>
-<div class="align-center" ng-show="showError">
-  <div class="alert alert-danger" role="alert">
-    <h4>ERROR: {{error}}</h4>
+export AWS_SECURITY_TOKEN=${AWS_SESSION_TOKEN}</textarea>
+<textarea id="afp-credentials" readonly rows="7" class="credentials-box" ng-show="showCredentialsType === 'raw'">
+AWS_ACCESS_KEY_ID={{credentials.AccessKeyId}}
+AWS_SECRET_ACCESS_KEY={{credentials.SecretAccessKey}}
+AWS_SESSION_TOKEN={{credentials.Token}}
+AWS_SECURITY_TOKEN={{credentials.Token}}</textarea>
+    <p>Expires at {{credentials.Expiration}}</p>
+    <a href="#" class="btn btn-info" role="button" ng-click="showCredentials = false">Close</a>
   </div>
-  <a href="#" class="btn btn-default" role="button" ng-show="loginstatus.loggedin">Close</a>
-</div>
-<div class="row">
-  <div class="tile col-sm-6 col-lg-3" ng-repeat="account in accounts | orderBy: 'AccountName'">
-    <h3>{{account.AccountName}}</h3>
-    <ul>
-      <li ng-repeat="role in account.Roles | orderBy:'Name'">
-        <span>{{role.Name}}</span>
-        <a class="arrow" href="#/credentials/{{role.URLSuffix}}">Credentials</a>
-        <a class="arrow" href="#/console/{{role.URLSuffix}}">ManagementConsole</a>
-      </li>
-    </ul>
+
+  <div class="align-center" ng-show="showError">
+    <div class="alert alert-danger" role="alert">
+      <h4>ERROR: {{error}}</h4>
+    </div>
+    <a href="#" class="btn btn-default" role="button" ng-show="loginstatus.loggedin" ng-click="showError = false">Close</a>
   </div>
-</div>
-<div class="align-center" ng-show="accounts.length == 0">
-  <div class="alert alert-info" role="alert" >
-    <b>No accounts found.</b>
-    You have no attached accounts.
+
+  <script type="text/ng-template" id="accountEntry.html">
+    <div class="account-entry">
+      <a class="favorite pull-right" ng-class="{'favorite-on': account.favorite}" href="#" ng-click="addFavorite(account)"></a>
+      <h4>{{account.AccountName}}</h4>
+      <ul>
+        <li ng-repeat="role in account.Roles | orderBy:'Name'">
+          <span class="">{{role.Name}}:</span>
+          <a href="#" ng-click="goToAWSConsole(role)" role="button" class="btn btn-primary btn-sm">AWS Console</a>
+          <a href="#" ng-click="getCredentials(role)" role="button" class="btn btn-primary btn-sm">Credentials</a>
+        </li>
+      </ul>
+    </div>
+  </script>
+
+  <div class="row favorite-section" ng-show="favoriteCount">
+    <div class="tile col-lg-12">
+      <h3 class="page-header">Favorites</h3>
+    </div>
+    <div class="tile col-sm-6 col-lg-3" ng-repeat="account in accounts | orderBy: 'AccountName' | filter:{'favorite': true}" ng-include="'accountEntry.html'"></div>
   </div>
+
+  <div class="row account-filter ng-cloak">
+    <div class="tile col-lg-12">
+      <h3 class="page-header">Accounts</h3>
+    </div>
+    <div class="col-lg-3">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Filter" id="filterQuery" name="filterQuery" ng-model="filterQuery" />
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" ng-click="resetQuery(filterQuery)">reset</button>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row ng-cloak">
+    <div class="tile col-sm-6 col-lg-3" ng-repeat="account in accounts | orderBy: 'AccountName' | filter:{'favorite': false} | filter:filterQuery " ng-include="'accountEntry.html'"></div>
+  </div>
+
+  <div class="align-center" ng-show="accounts.length == 0">
+    <div class="alert alert-info" role="alert" >
+      <b>No accounts found.</b>
+      You have no attached accounts.
+    </div>
+  </div>
+
 </div>

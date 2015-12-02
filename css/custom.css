@@ -25,9 +25,8 @@ body {
   min-height: 20px;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.page-header {
+  margin-top: 20px;
 }
 
 a:hover {
@@ -44,9 +43,9 @@ a:hover {
 
 .loader {
   text-align: center;
-  padding-top: 75px;
-  font-size: 2.8rem;
-  min-height: 275px;
+  padding-top: 65px;
+  font-size: 1.5rem;
+  min-height: 150px;
 }
 
 .credentials {
@@ -68,4 +67,84 @@ a:hover {
 .right {
   float:right;
   position:relative;
+}
+
+a.favorite {
+  color: #b4b4b4;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+a.favorite:before {
+  content: "\2605";
+}
+
+.favorite.favorite-on {
+  color: gold;
+}
+
+.section-topic {
+}
+
+.section-topic {
+  padding: 0 0 15px 0;
+}
+
+.section-form .form-control {
+  margin-left: 15px;
+}
+
+section {
+  margin-bottom: 10px;
+}
+
+.account-entry {
+  background: rgba(0, 0, 0, 0.04);
+  background: linear-gradient(180deg, #fefefe 0%, #f9f9f9 50%);
+  border: 1px solid rgb(221, 218, 219);
+  padding: 3px 10px;
+  margin: 10px 0;
+}
+
+.account-entry .label {
+  font-size: 1em;
+}
+
+.account-filter {
+  margin-bottom: 10px;
+}
+
+.account-entry ul {
+  list-style-type: none;
+  padding-left: 10px;
+}
+
+.account-entry ul li {
+  padding-bottom: 5px;
+}
+
+.account-entry h4 {
+  color: #003778;
+  font-size: 1.4em;
+}
+
+.btn-primary {
+  background-color: rgba(214, 214, 214, 0.31);
+  border-color: rgba(0, 55, 120, 0.3);
+  color: #003778;
+}
+
+.btn-primary:hover {
+  background-color: rgba(214, 214, 214, 0.71);
+  border-color: rgba(0, 55, 120, 0.51);
+  color: #003778;
+}
+
+.credentials-box {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-top: none;
+  padding: 15px 6px;
+  background: rgba(0, 0, 0, 0.04);
+  background: linear-gradient(180deg, #fefefe 0%, #f9f9f9 50%);
 }
