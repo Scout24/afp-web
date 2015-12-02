@@ -1,6 +1,6 @@
 angular.module('afpClientApp', ['ngRoute'])
   .constant("appVars", {
-    afpApiEndpoint: "http://afp.rz.is/afp-api/latest/"
+    afpApiEndpoint: "/afp-api/latest/"
   })
   .config(['$routeProvider',
     function ($routeProvider) {
