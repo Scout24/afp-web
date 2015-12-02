@@ -99,8 +99,7 @@ section {
 }
 
 .account-entry {
-  background: rgba(0, 0, 0, 0.04);
-  background: linear-gradient(180deg, #fefefe 0%, #f9f9f9 50%);
+  background: #F5F5F5;
   border: 1px solid rgb(221, 218, 219);
   padding: 3px 10px;
   margin: 10px 0;
@@ -128,23 +127,16 @@ section {
   font-size: 1.4em;
 }
 
-.btn-primary {
-  background-color: rgba(214, 214, 214, 0.31);
-  border-color: rgba(0, 55, 120, 0.3);
-  color: #003778;
-}
-
-.btn-primary:hover {
-  background-color: rgba(214, 214, 214, 0.71);
-  border-color: rgba(0, 55, 120, 0.51);
-  color: #003778;
-}
-
 .credentials-box {
   width: 100%;
   border: 1px solid #ddd;
   border-top: none;
   padding: 15px 6px;
-  background: rgba(0, 0, 0, 0.04);
-  background: linear-gradient(180deg, #fefefe 0%, #f9f9f9 50%);
+  background: #F5F5F5;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover {
+  background-color: #F5F5F5;
 }

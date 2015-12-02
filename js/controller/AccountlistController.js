@@ -1,7 +1,6 @@
-angular.module('afpClientApp').controller('AccountlistController', ['$scope', '$http', 'userMessageService', '$timeout', 'favouritesService', 'appVars', '$location', '$window',
-  function ($scope, $http, userMessageService, $timeout, favouritesService, appVars, $location, $window) {
+angular.module('afpClientApp').controller('AccountlistController', ['$scope', '$http', 'userMessageService', '$timeout', 'favouritesService', 'appVars',
+  function ($scope, $http, userMessageService, $timeout, favouritesService, appVars) {
 
-    $scope.showWaiting = true;
     $scope.showCredentials = false;
     $scope.favoriteCount = 0;
     $scope.filterQuery = '';
@@ -30,7 +29,6 @@ angular.module('afpClientApp').controller('AccountlistController', ['$scope', '$
       if (err) {
         $scope.error = err.message;
         $scope.showError = true;
-        $scope.showWaiting = false;
 
         return;
       }
@@ -38,7 +36,6 @@ angular.module('afpClientApp').controller('AccountlistController', ['$scope', '$
       $scope.favoriteCount = favouritesService.readFavorites(accounts);
       $scope.accounts = accounts;
       $scope.showError = false;
-      $scope.showWaiting = false;
       focusQueryInput();
     });
 
@@ -56,25 +53,6 @@ angular.module('afpClientApp').controller('AccountlistController', ['$scope', '$
           $scope.showError = false;
           $scope.showWaiting = false;
           $scope.loginstatus = userMessageService.getLoginstatus(headers);
-        })
-        .error(function (response, status, headers) {
-          $scope.error = userMessageService.getErrorMessage(status, response);
-          $scope.showCredentials = false;
-          $scope.showError = true;
-          $scope.showWaiting = false;
-          $scope.loginstatus = userMessageService.getLoginstatus(headers);
-        });
-    };
-
-    $scope.goToAWSConsole = function (role) {
-      var callbackurl = encodeURIComponent($location.absUrl());
-      var url = appVars.afpApiEndpoint + "account/" + role.URLSuffix + "/consoleurl?callbackurl=" + callbackurl;
-
-      $scope.showWaiting = true;
-
-      $http.get(url)
-        .success(function (response) {
-          $window.location.href = response;
         })
         .error(function (response, status, headers) {
           $scope.error = userMessageService.getErrorMessage(status, response);

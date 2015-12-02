@@ -1,0 +1,11 @@
+<div class="account-entry">
+  <a class="favorite pull-right" ng-class="{'favorite-on': account.favorite}" href="#" ng-click="addFavorite(account)"></a>
+  <h4>{{account.AccountName}}</h4>
+  <ul>
+    <li ng-repeat="role in account.Roles | orderBy:'Name'">
+      <span class="">{{role.Name}}:</span>
+      <a role="button" class="btn btn-primary btn-sm" href="#" ng-click="getCredentials(role)">Credentials</a>
+      <a role="button" class="btn btn-primary btn-sm" href="#/console/{{role.URLSuffix}}">AWS Console</a>
+    </li>
+  </ul>
+</div>
