@@ -56,7 +56,8 @@ a:hover {
 
 .arrow:before {
   color: #ff851d;
-  content: " » ";
+  content: "»";
+  margin: 0 5px;
 }
 
 .left {
@@ -101,30 +102,29 @@ section {
 .account-entry {
   background: #F5F5F5;
   border: 1px solid rgb(221, 218, 219);
-  padding: 3px 10px;
+  padding: 5px 10px 10px 10px;
   margin: 10px 0;
 }
 
 .account-entry .label {
-  font-size: 1em;
+  font-size: 0.9em;
 }
 
-.account-filter {
-  margin-bottom: 10px;
+.account-entry td {
+  padding: 5px;
 }
 
-.account-entry ul {
-  list-style-type: none;
-  padding-left: 10px;
-}
-
-.account-entry ul li {
-  padding-bottom: 5px;
+.account-entry .btn {
+  margin: 0 10px 10px 0;
 }
 
 .account-entry h4 {
   color: #003778;
   font-size: 1.4em;
+}
+
+.account-filter {
+  margin-bottom: 10px;
 }
 
 .credentials-box {
