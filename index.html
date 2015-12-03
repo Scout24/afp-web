@@ -25,5 +25,89 @@
       .
       <span class="ng-binding">Version 2.0.0.is24</span>
     </div>
+
+    <!-- survey start -->
+    <script src="js/lib/jquery.js"></script>
+    <script src="https://www.immobilienscout24.de/nps/widget?framework=JQUERY"></script>
+    <style>
+      .layer-container {
+        -webkit-overflow-scrolling: touch;
+        overflow: auto;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 1;
+        z-index: 11730000;
+        background-color: #fff;
+        background-color: rgba(31, 28, 28, 0.75);
+      }
+
+      .layer {
+        position: relative;
+        max-width: 760px;
+        z-index: 11730001;
+        background: #fff;
+        margin: 30px auto;
+        border: 1px solid #1d206e;
+        border-radius: 10px;
+        -webkit-box-shadow: 2px 0 18px #333;
+        -moz-box-shadow: 2px 0 18px #333;
+        box-shadow: 2px 0 18px #333;
+        padding: 10px 20px 20px 20px;
+      }
+
+      #layerCloseButton {
+        position: absolute;
+        top: -14px;
+        right: -14px;
+        cursor: pointer;
+      }
+    </style>
+
+
+    <div id="surveyLayerContainer" class="layer-container" style="display: none;">
+      <div class="layer">
+        <img id="layerCloseButton" src="images/close.png" />
+        <div class="layer-description">
+          <h3>Überschrift</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem facilisis semper ac in est.</p>
+        </div>
+        <div id="nps"></div>
+      </div>
+    </div>
+
+    <script>
+      $(function () {
+        var $surveyLayerContainer = $("#surveyLayerContainer");
+
+        function hideLayer() {
+          $surveyLayerContainer.hide();
+          localStorage.passedCloudInfrastructureSurvey = true;
+        }
+
+        if (!localStorage.passedCloudInfrastructureSurvey) {
+          $("#nps").nps({category: 'CloudInfrastructureSurvey', ratingText: 'Bitte bewerten'}).success(function () {
+            $("#nps-feedback-submit").on("click", function () {
+              setTimeout(function () {
+                hideLayer();
+              }, 1500);
+            })
+          });
+
+          $("#layerCloseButton, #surveyLayerContainer").on("click", hideLayer);
+          $(".layer").on("click", function (event) {
+            event.stopPropagation();
+          });
+
+          $surveyLayerContainer.show();
+        }
+      });
+    </script>
+    <!-- survey end -->
+
+
+
   </body>
 </html>

@@ -37,3 +37,4 @@ Copyrights
 * The CSS spinner (throbber.css) was taken from https://github.com/jlong/css-spinners.git
 * AngularJS v1.4.3 (Licensed under MIT) http://angularjs.org
 * Bootstrap v3.3.5 (Licensed under MIT) https://github.com/twbs/bootstrap/blob/master/LICENSE
+* jQuery v1.11.3 (Licensed under MIT) https://jquery.org/license/
