@@ -30,6 +30,7 @@
     <script src="js/lib/jquery.js"></script>
     <script src="https://www.immobilienscout24.de/nps/widget?framework=JQUERY"></script>
     <style>
+
       .layer-container {
         -webkit-overflow-scrolling: touch;
         overflow: auto;
@@ -58,12 +59,25 @@
         padding: 10px 20px 20px 20px;
       }
 
+      .nps-scale {
+        margin-top: 19px;
+      }
+
+      .layer h3 {
+        margin-top: 10px;
+      }
+
       #layerCloseButton {
         position: absolute;
         top: -14px;
         right: -14px;
         cursor: pointer;
       }
+
+      #nps-feedback-container .nps-text {
+        display: none;
+      }
+
     </style>
 
 
@@ -71,8 +85,15 @@
       <div class="layer">
         <img id="layerCloseButton" src="images/close.png" />
         <div class="layer-description">
-          <h3>Überschrift</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem facilisis semper ac in est.</p>
+          <h3>AWS-Umfrage</h3>
+          <p>Liebe/r Scouti,</p>
+
+          <p>
+            das ist die erste AWS-Zufriedenheitsumfrage.
+            Bitte gib uns kurz Feedback, wie gut du die bereitgestellten AWS Services findest.
+            Da wir das Produkt kontinuierlich verbessern wollen, werden wir dich in Zukunft häufiger zu einzelnen Themen wie z.B. Deployment oder Logging & Monitoring um deine Meinung bitten.
+          </p>
+          <p>Vielen Dank für deine Unterstützung!</p>
         </div>
         <div id="nps"></div>
       </div>
@@ -88,7 +109,11 @@
         }
 
         if (!localStorage.passedCloudInfrastructureSurvey) {
-          $("#nps").nps({category: 'CloudInfrastructureSurvey', ratingText: 'Bitte bewerten'}).success(function () {
+          $("#nps").nps({
+            category: 'CloudInfrastructureSurvey',
+            ratingText: 'Wie wahrscheinlich ist es, dass du AWS an Kollegen weiterempfiehlst?',
+            feedbackText: 'Feedback'
+          }).success(function () {
             $("#nps-feedback-submit").on("click", function () {
               setTimeout(function () {
                 hideLayer();
