@@ -60,11 +60,15 @@
       }
 
       .nps-scale {
-        margin-top: 19px;
+
       }
 
       .layer h3 {
         margin-top: 10px;
+      }
+
+      #nps-headline {
+        font-size: 1.4em;
       }
 
       #layerCloseButton {
@@ -85,15 +89,10 @@
       <div class="layer">
         <img id="layerCloseButton" src="images/close.png" />
         <div class="layer-description">
-          <h3>AWS-Umfrage</h3>
-          <p>Liebe/r Scouti,</p>
-
-          <p>
-            das ist die erste AWS-Zufriedenheitsumfrage.
-            Bitte gib uns kurz Feedback, wie gut du die bereitgestellten AWS Services findest.
-            Da wir das Produkt kontinuierlich verbessern wollen, werden wir dich in Zukunft häufiger zu einzelnen Themen wie z.B. Deployment oder Logging & Monitoring um deine Meinung bitten.
-          </p>
-          <p>Vielen Dank für deine Unterstützung!</p>
+          <h3>Cloud Survey</h3>
+          <p>Dear Scouti,</p>
+          <p>this is the first cloud satisfaction survey. Please give us feedback about your happiness with the provided AWS-Services. To improve the product step by step, we’ll ask you about different topics like deployment, logging & monitoring from time to time.</p>
+          <p>Thanks for your support!</p>
         </div>
         <div id="nps"></div>
       </div>
@@ -111,15 +110,28 @@
         if (!localStorage.passedCloudInfrastructureSurvey) {
           $("#nps").nps({
             category: 'CloudInfrastructureSurvey',
-            ratingText: 'Wie wahrscheinlich ist es, dass du AWS an Kollegen weiterempfiehlst?',
+            ratingText: 'How likely do you recommend the cloud to colleagues?',
             feedbackText: 'Feedback'
           }).success(function () {
+
+            setTimeout(function () {
+              $("#nps-feedback").val("Feedback");
+            });
+
             $("#nps-feedback-submit").on("click", function () {
               setTimeout(function () {
                 hideLayer();
               }, 1500);
-            })
+            });
           });
+
+          var origIS24NpsShowTemplate = window.IS24NpsShowTemplate;
+          window.IS24NpsShowTemplate = function (data) {
+            data = data.replace(/Ja, auf jeden Fall/g, "Yes, of course");
+            data = data.replace(/Nein, auf gar keinen Fall/g, "No way");
+
+            origIS24NpsShowTemplate(data);
+          };
 
           $("#layerCloseButton, #surveyLayerContainer").on("click", hideLayer);
           $(".layer").on("click", function (event) {
