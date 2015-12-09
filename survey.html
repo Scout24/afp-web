@@ -1,0 +1,119 @@
+<!-- survey start -->
+
+<style>
+
+  .layer-container {
+    -webkit-overflow-scrolling: touch;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 1;
+    z-index: 11730000;
+    background-color: #fff;
+    background-color: rgba(31, 28, 28, 0.75);
+  }
+
+  .layer {
+    position: relative;
+    max-width: 760px;
+    z-index: 11730001;
+    background: #fff;
+    margin: 30px auto;
+    border: 1px solid #1d206e;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 0 18px #333;
+    -moz-box-shadow: 2px 0 18px #333;
+    box-shadow: 2px 0 18px #333;
+    padding: 10px 20px 20px 20px;
+  }
+
+  .nps-scale {
+
+  }
+
+  .layer h3 {
+    margin-top: 10px;
+  }
+
+  #nps-headline {
+    font-size: 1.4em;
+  }
+
+  #layerCloseButton {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    cursor: pointer;
+  }
+
+  #nps-feedback-container .nps-text {
+    display: none;
+  }
+
+</style>
+
+
+<div id="surveyLayerContainer" class="layer-container" style="display: none;">
+  <div class="layer">
+    <img id="layerCloseButton" src="images/close.png" />
+    <div class="layer-description">
+      <h3>Cloud Survey</h3>
+      <p>Dear Scouti,</p>
+      <p>
+        this is the first cloud satisfaction survey. Please give us feedback about your happiness with the provided AWS-Services.
+        To improve the product step by step, we’ll ask you about different topics like deployment or logging & monitoring from time to time.
+      </p>
+      <p>Thanks for your support!</p>
+    </div>
+    <div id="nps"></div>
+  </div>
+</div>
+
+<script>
+  $(function () {
+    var $surveyLayerContainer = $("#surveyLayerContainer");
+
+    function hideLayer() {
+      $surveyLayerContainer.hide();
+      localStorage.passedCloudInfrastructureSurvey = true;
+    }
+
+    if (!localStorage.passedCloudInfrastructureSurvey) {
+      $("#nps").n ps({
+        category: 'CloudInfrastructureSurvey',
+        ratingText: 'How likely do you recommend the cloud to colleagues?',
+        feedbackText: 'Feedback'
+      }).success(function () {
+
+        setTimeout(function () {
+          $("#nps-feedback").val("Feedback");
+        });
+
+        $("#nps-feedback-submit").on("click", function () {
+          setTimeout(function () {
+            hideLayer();
+          }, 1500);
+        });
+      });
+
+      var origIS24NpsShowTemplate = window.IS24NpsShowTemplate;
+      window.IS24NpsShowTemplate = function (data) {
+        data = data.replace(/Ja, auf jeden Fall/g, "Yes, of course");
+        data = data.replace(/Nein, auf gar keinen Fall/g, "No way");
+
+        origIS24NpsShowTemplate(data);
+      };
+
+      $("#layerCloseButton, #surveyLayerContainer").on("click", hideLayer);
+      $(".layer").on("click", function (event) {
+        event.stopPropagation();
+      });
+
+      $surveyLayerContainer.show();
+    }
+  });
+</script>
+<!-- survey end -->
