@@ -1,6 +1,6 @@
 # Makefile for generating SRPM files
 
-TOPLEVEL := css js templates default-logo.png favicon.png index.html afp-web.spec survey.html
+TOPLEVEL := css js templates images default-logo.png favicon.png index.html afp-web.spec survey.html 
 
 GITREV := HEAD
 
