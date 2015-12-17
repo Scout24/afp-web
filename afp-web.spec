@@ -16,6 +16,7 @@ federation proxy api
 %install
 mkdir -p  %{buildroot}/var/www/afp-web/{js,css,templates}
 install -m 0644 index.html -D %{buildroot}/var/www/afp-web/
+install -m 0644 survey.html -D %{buildroot}/var/www/afp-web/
 install -m 0644 favicon.png -D %{buildroot}/var/www/afp-web/
 install -m 0644 default-logo.png -D %{buildroot}/var/www/afp-web/
 cp -r js %{buildroot}/var/www/afp-web/
