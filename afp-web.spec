@@ -21,6 +21,7 @@ install -m 0644 favicon.png -D %{buildroot}/var/www/afp-web/
 install -m 0644 default-logo.png -D %{buildroot}/var/www/afp-web/
 cp -r js %{buildroot}/var/www/afp-web/
 install -m 0644 css/* -D %{buildroot}/var/www/afp-web/css
+install -m 0644 images/* -D %{buildroot}/var/www/afp-web/images
 install -m 0644 templates/* -D %{buildroot}/var/www/afp-web/templates
 
 %files
