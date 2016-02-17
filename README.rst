@@ -36,9 +36,9 @@ Development
 -----------
 
 * Install node
-* go to the *devel* subdirectory
-* *npm install apimocker*
-* Use *node node_modules/apimocker/bin/apimocker.js -c config.json* to start the apimocker web server
+* go to the ``devel`` subdirectory
+* ``npm install apimocker``
+* Use ``node node_modules/apimocker/bin/apimocker.js -c config.json`` to start the apimocker web server
 * Point your browser to http://localhost:8080
 
 Copyrights

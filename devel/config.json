@@ -11,7 +11,10 @@
     "afp-api/latest/account": {
       "mockFile": "account.json",
       "verbs": ["get"],
-      "contentType":"application/json"
+      "contentType":"application/json",
+      "headers": {
+        "X-Username": "mockmock"
+      }
     },
     "afp-api/latest/account/ok-one/full-access/credentials": {
       "mockFile": "ok-one-full-access-credentials.json",
@@ -23,8 +26,8 @@
       "verbs": ["get"],
       "contentType":"text/plain"
     },
-    "afp-api/latest/account/:account/:role/credentials": {
-      "mockFile": "credentials-error.json",
+    "afp-api/latest/account/:account/:role/:action": {
+      "mockFile": "error.json",
       "enableTemplate": true,
       "verbs": ["get"],
       "contentType":"application/json",
