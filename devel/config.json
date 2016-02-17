@@ -1,0 +1,34 @@
+{
+  "note": "afp-web devel environment",
+  "mockDirectory": "mocks/",
+  "staticDirectory": "..",
+  "staticPath": "/",
+  "quiet": false,
+  "port": "8080",
+  "latency": 50,
+  "logRequestHeaders": false,
+  "webServices": {
+    "afp-api/latest/account": {
+      "mockFile": "account.json",
+      "verbs": ["get"],
+      "contentType":"application/json"
+    },
+    "afp-api/latest/account/ok-one/full-access/credentials": {
+      "mockFile": "ok-one-full-access-credentials.json",
+      "verbs": ["get"],
+      "contentType":"application/json"
+    },
+    "afp-api/latest/account/ok-one/full-access/consoleurl": {
+      "mockFile": "ok-one-full-access-consoleurl.txt",
+      "verbs": ["get"],
+      "contentType":"text/plain"
+    },
+    "afp-api/latest/account/:account/:role/credentials": {
+      "mockFile": "credentials-error.json",
+      "enableTemplate": true,
+      "verbs": ["get"],
+      "contentType":"application/json",
+      "httpStatus": 403
+    }
+  }
+}

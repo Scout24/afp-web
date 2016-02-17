@@ -1,0 +1,27 @@
+{
+    "ok-one": [
+        "full-access"
+    ],
+    "two": [
+        "full-access",
+        "read-only"
+    ],
+    "three": [
+        "full-access"
+    ],
+    "four": [
+        "full-access"
+    ],
+    "five": [
+        "full-access"
+    ],
+    "six-seven-eight-nine": [
+        "full-access"
+    ],
+    "10-eleven": [
+        "full-access"
+    ],
+    "1213": [
+        "full-access"
+    ]
+}
