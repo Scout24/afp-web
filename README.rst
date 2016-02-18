@@ -24,13 +24,25 @@ For example in a vhost with:
 
 API access
 ^^^^^^^^^^
-Use the *app.js* file to configure the location of the afpApiEndpoint.
-By default uses the same host as this webui with an endpoint of */afp-api/latest/*
+Use the ``app.js`` file to configure the location of the ``afpApiEndpoint``.
+By default uses the same host as this webui with an endpoint of ``/afp-api/latest/``
 
 Logo configuration
 ^^^^^^^^^^^^^^^^^^
 If you want to replace the default logo just put a image file called
-**logo.png** into the **DocumentRoot**.
+``logo.png`` into the ``DocumentRoot``.
+
+Costs link
+^^^^^^^^^^
+For each account afp-web can show a link to your own AWS costs dashboard. To enable this feature create a ``config.json`` file at the top of your ``DocumentRoot`` with this content:
+
+.. code-block:: json
+
+    {
+        "costsLink": "http://ice/ice/dashboard/summary#account="
+    }
+
+The name of the AWS account will be appended to this URL.
 
 Development
 -----------

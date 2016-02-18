@@ -84,6 +84,15 @@ a.favorite:before {
   color: gold;
 }
 
+a.costs {
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+a.costs:before {
+    content: "\1f4b0";
+}
+
 .section-topic {
 }
 

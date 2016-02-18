@@ -1,10 +1,22 @@
 angular.module('afpClientApp').controller('AccountlistController', ['$scope', '$http', 'userMessageService', '$timeout', 'favouritesService', 'appVars',
   function ($scope, $http, userMessageService, $timeout, favouritesService, appVars) {
 
+    $scope.costsLink = false;
     $scope.showCredentials = false;
     $scope.favoriteCount = 0;
     $scope.filterQuery = '';
     $scope.showCredentialsType = 'bash';
+
+    var config_data = {};
+
+    $http.get('/config.json').
+      success(function(data, status, headers, config) {
+        $scope.costsLink = data.costsLink;
+      }).
+      error(function(data, status, headers, config) {
+        console.log("Could not load config.json, error " + status + "\n" + data);
+      });
+
 
     function focusQueryInput() {
       $timeout(function () {

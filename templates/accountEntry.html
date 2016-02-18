@@ -1,5 +1,8 @@
 <div class="account-entry">
-  <a class="favorite pull-right" ng-class="{'favorite-on': account.favorite}" href="#" ng-click="addFavorite(account)"></a>
+  <div class="pull-right">
+    <a class="favorite" ng-class="{'favorite-on': account.favorite}" href="#" ng-click="addFavorite(account)"></a>
+    <a class="costs" ng-show="costsLink" href="{{costsLink}}{{account.AccountName}}" target="_blank"></a>
+  </div>
   <h4>{{account.AccountName}}</h4>
   <table>
     <tr ng-repeat="role in account.Roles | orderBy:'Name'" class="row">
