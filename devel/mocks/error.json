@@ -1,0 +1,7 @@
+{
+    "error": "403 Forbidden",
+    "exception": null,
+    "message": "Action '@action' is forbidden to user 'mock' on role '@role' in account '@account'",
+    "status": 403,
+    "traceback": null
+}

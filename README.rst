@@ -32,6 +32,15 @@ Logo configuration
 If you want to replace the default logo just put a image file called
 **logo.png** into the **DocumentRoot**.
 
+Development
+-----------
+
+* Install node
+* go to the ``devel`` subdirectory
+* ``npm install apimocker``
+* Use ``node node_modules/apimocker/bin/apimocker.js -c config.json`` to start the apimocker web server
+* Point your browser to http://localhost:8080
+
 Copyrights
 ^^^^^^^^^^
 * The CSS spinner (throbber.css) was taken from https://github.com/jlong/css-spinners.git
