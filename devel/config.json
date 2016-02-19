@@ -8,6 +8,11 @@
   "latency": 50,
   "logRequestHeaders": false,
   "webServices": {
+    "config.json": {
+      "mockFile": "config.json",
+      "verbs": ["get"],
+      "contentType":"application/json"
+    },
     "afp-api/latest/account": {
       "mockFile": "account.json",
       "verbs": ["get"],
