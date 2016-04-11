@@ -3,7 +3,7 @@
     <a class="favorite" ng-class="{'favorite-on': account.favorite}" href="#" ng-click="addFavorite(account)"></a>
     <a class="costs" ng-show="costsLink" href="{{costsLink}}{{account.AccountName}}" target="_blank"></a>
   </div>
-  <h4>{{account.AccountName}}</h4>
+  <h4><a href="#/console/{{account.Roles[0].URLSuffix}}">{{account.AccountName}}</a></h4>
   <table>
     <tr ng-repeat="role in account.Roles | orderBy:'Name'" class="row">
       <td>
