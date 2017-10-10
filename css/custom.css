@@ -113,7 +113,14 @@ section {
   border: 1px solid rgb(221, 218, 219);
   padding: 5px 10px 10px 10px;
   margin: 10px 0;
+  overflow-x: auto
 }
+
+/* font scaling based on standard bootstrap media sizes */
+@media (max-width: 767px) { .account-entry { font-size: 3.5vw; } }
+@media (min-width: 768px) and (max-width: 991px) { .account-entry { font-size: 2vw; } }
+@media (min-width: 992px) and (max-width: 1199px) { .account-entry { font-size: 1.35vw; } }
+@media (min-width: 1200px) { .account-entry { font-size: 0.95vw; } }
 
 .account-entry .label {
   font-size: 0.9em;
