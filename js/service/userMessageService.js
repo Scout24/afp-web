@@ -37,19 +37,34 @@ angular.module('afpClientApp').factory('userMessageService', [
     function createAccountArray(response) {
       var result = [];
 
-      angular.forEach(response, function (roles, accountName) {
-        var account = {
-          'AccountName': accountName,
-          'Roles': []
-        };
+      angular.forEach(response, function (details, accountName) {
+        var account = "";
+        if ("id" in details) {
+          account = {
+            'AccountName': accountName,
+            'Roles': [],
+            'AccountID': details['id']
+          };
 
-        angular.forEach(roles, function (role) {
-          account.Roles.push({
-            'Name': role,
-            'URLSuffix': accountName + '/' + role
+          angular.forEach(details['roles'], function (role) {
+            account.Roles.push({
+              'Name': role,
+              'URLSuffix': accountName + '/' + role
+            });
           });
-        });
-
+        }
+        else {
+          account = {
+            'AccountName': accountName,
+            'Roles': []
+          };
+          angular.forEach(details, function (role) {
+            account.Roles.push({
+              'Name': role,
+              'URLSuffix': accountName + '/' + role
+            });
+          });
+        }
         result.push(account)
       });
 
@@ -59,7 +74,7 @@ angular.module('afpClientApp').factory('userMessageService', [
     function getAccountList(callback) {
       var error = {};
 
-      $http.get(appVars.afpApiEndpoint + "account")
+      $http.get(appVars.afpApiEndpoint + "account?withid")
         .success(function (response, status, headers) {
           callback(null, getLoginstatus(headers), createAccountArray(response));
         })
