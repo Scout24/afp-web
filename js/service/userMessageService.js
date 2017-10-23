@@ -38,15 +38,13 @@ angular.module('afpClientApp').factory('userMessageService', [
       var result = [];
 
       angular.forEach(response, function (details, accountName) {
-        var account = "";
+        var account = {
+          'AccountName': accountName,
+          'Roles': []
+        };
         if ("id" in details) {
-          account = {
-            'AccountName': accountName,
-            'Roles': [],
-            'AccountID': details['id']
-          };
-
-          angular.forEach(details['roles'], function (role) {
+          account.AccountID = details.id;
+          angular.forEach(details.roles, function (role) {
             account.Roles.push({
               'Name': role,
               'URLSuffix': accountName + '/' + role
@@ -54,10 +52,6 @@ angular.module('afpClientApp').factory('userMessageService', [
           });
         }
         else {
-          account = {
-            'AccountName': accountName,
-            'Roles': []
-          };
           angular.forEach(details, function (role) {
             account.Roles.push({
               'Name': role,
