@@ -1,7 +1,7 @@
 <div class="account-entry">
   <div class="pull-right">
     <a class="favorite" ng-class="{'favorite-on': account.favorite}" href="#" ng-click="addFavorite(account)"></a>
-    <a class="costs" ng-show="costsLink" href="{{costsLink}}{{account.AccountName}}" target="_blank"></a>
+    <a class="costs" ng-show="costsLink" href="{{costsLink}}{{account.AccountID}}" target="_blank"></a>
   </div>
   <h4><a href="#/console/{{account.Roles[0].URLSuffix}}">{{account.AccountName}}</a></h4>
   <table>
