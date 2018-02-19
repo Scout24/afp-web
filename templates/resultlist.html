@@ -38,6 +38,8 @@ AWS_SECURITY_TOKEN={{credentials.Token}}</textarea>
   <a href="#" class="btn btn-primary" role="button" ng-click="showCredentials = false">Close</a>
 </div>
 
+<div ng-include="'announcement.html'"></div>
+
 <div class="align-center" ng-show="showError">
   <div class="alert alert-danger" role="alert">
     <h4>ERROR: {{error}}</h4>
